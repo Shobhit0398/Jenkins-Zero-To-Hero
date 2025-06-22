@@ -9,6 +9,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
+        cleanWs() 
         echo 'Starting Checkout'
         dir('java-maven-sonar-argocd-helm-k8s') {
           git branch: 'main', url: 'https://github.com/Shobhit0398/Jenkins-Zero-To-Hero.git'

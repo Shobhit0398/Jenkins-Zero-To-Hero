@@ -11,7 +11,9 @@ pipeline {
     stage('Checkout') {
       steps {
         echo 'Starting Checkout'
-        git branch: 'main', url: 'https://github.com/Shobhit0398/Jenkins-Zero-To-Hero.git'
+        dir('java-maven-sonar-argocd-helm-k8s') {
+          git branch: 'main', url: 'https://github.com/Shobhit0398/Jenkins-Zero-To-Hero.git'
+        }
       }
     }
 

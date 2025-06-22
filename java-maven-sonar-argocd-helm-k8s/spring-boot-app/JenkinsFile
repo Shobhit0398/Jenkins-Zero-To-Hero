@@ -11,9 +11,7 @@ pipeline {
     stage('Checkout') {
       steps {
         echo 'Starting Checkout'
-        dir('java-maven-sonar-argocd-helm-k8s') {
-          git branch: 'main', url: 'https://github.com/Shobhit0398/Jenkins-Zero-To-Hero.git'
-        }
+        git branch: 'main', url: 'https://github.com/Shobhit0398/Jenkins-Zero-To-Hero.git'
       }
     }
 
@@ -69,6 +67,7 @@ pipeline {
         GIT_USER_NAME = "Shobhit0398"
       }
       steps {
+       dir('java-maven-sonar-argocd-helm-k8s') {
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
           sh '''
             git config user.email "shobhitnagar71@gmail.com"
@@ -79,9 +78,8 @@ pipeline {
             git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
           '''
         }
+       }
       }
     }
   }
 }
-
-

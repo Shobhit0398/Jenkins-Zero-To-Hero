@@ -12,7 +12,8 @@ pipeline {
     stage('Checkout') {
       steps {
         echo 'Starting Checkout'
-        git branch: 'main', url: 'https://github.com/Shobhit0398/Jenkins-Zero-To-Hero.git'
+        sh 'echo passed'
+        //git branch: 'main', url: 'https://github.com/Shobhit0398/Jenkins-Zero-To-Hero.git'
       }
     }
 
@@ -74,7 +75,7 @@ pipeline {
             git config user.name "Shobhit0398"
             sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
             git add spring-boot-app-manifests/deployment.yml
-            git commit -m "Update deployment image to version ${BUILD_NUMBER}" || echo "No changes to commit"
+            git commit -m "Update deployment image to version ${BUILD_NUMBER}" 
             git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
           '''
         }
